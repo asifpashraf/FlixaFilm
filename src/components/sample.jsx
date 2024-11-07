@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-function LatestTvShow() {
-  const [tvShow, setTvShow] = useState(null);
+function DataFetchingComponent() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchLatestTvShow = async () => {
-      try {
-        const response = await fetch(
-          "https://api.themoviedb.org/3/tv/latest?api_key=5ef212dfa67e7d4937c0cda7fd1362f6&language=en-US"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setTvShow(data);
-      } catch (error) {
-        setError(error.message);
+  // This function fetches data from an API
+  const fetchData = async () => {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchLatestTvShow();
-  }, []); // Empty dependency array means this runs once on component mount
+  // useEffect to call fetchData when component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  // Conditional rendering based on the state
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
-      {tvShow ? (
-        <div>
-          <h1>{tvShow.name}</h1>
-          <p>{tvShow.overview}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h1>Data Fetched from API:</h1>
+      <ul>
+        {data.map((item) => (
+          <li key={item.id}>{item.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default LatestTvShow;
+export default DataFetchingComponent;
