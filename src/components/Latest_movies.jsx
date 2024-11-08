@@ -33,15 +33,15 @@ function Latest_movies() {
     // Conditional rendering based on the state
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-    console.log(data.results[0].original_title);
+    console.log(data.results);
     
 
   return (
-    <div className='p-4 grid grid-cols-3 gap-y-2  '>
+    <div className='p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
 
         {data.results.map((movieCard,index)=>{
           return(
-            <Latest_movies_card title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.backdrop_path}`} key={index}/>
+            <Latest_movies_card title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.poster_path}`} key={index}/>
           )
           
             
