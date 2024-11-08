@@ -1,8 +1,14 @@
 import React from 'react';
 
 function LatestMoviesCard(props) {
+
+  function fcover(){
+    console.log("hiii");
+    
+}
+
   return (
-    <div className="">
+    <div className="" onClick={fcover}>
       <div className="relative group h-[28vh] max-w-[300px] border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg transition duration-300 transform hover:scale-105">
         <img
           className="w-full h-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
