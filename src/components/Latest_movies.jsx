@@ -9,6 +9,11 @@ function Latest_movies() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [cover_image,setCover] =useState(false)
+
+    function covers (){
+      console.log("its working");
+      
+    }
     
   
     // This function fetches data from an API
@@ -39,12 +44,12 @@ function Latest_movies() {
     
 
   return (
-    <div className='p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
+    <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
 
       
         {data.results.map((movieCard,index)=>{
           return(
-            <Latest_movies_card title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.poster_path}`} key={index}/>
+            <Latest_movies_card onclick ={covers} title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.poster_path}`} key={index}/>
           )
           
             
