@@ -12,8 +12,8 @@ function App() {
   return (
    <div className='bg-slate-900'>
     <Header/>
-    <DataFiles/>
-    {/* <Latest_movies/> */}
+    {/* <DataFiles/> */}
+    <Latest_movies/>
    </div>
   )
 }

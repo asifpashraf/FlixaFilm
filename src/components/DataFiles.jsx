@@ -9,6 +9,8 @@ function DataFiles() {
     
     const fetchData = axios.get(movieUrl)
     .then((reponse)=>{
+        setMovieData(reponse.json)
+        console.log("its working");
         
     })
     .catch()

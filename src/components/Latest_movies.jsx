@@ -8,12 +8,9 @@ function Latest_movies() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [cover_image,setCover] =useState(false)
+    const [cover_image,setCover] =useState([])
 
-    function covers (){
-      console.log("its working");
-      
-    }
+   
     
   
     // This function fetches data from an API
@@ -49,7 +46,15 @@ function Latest_movies() {
       
         {data.results.map((movieCard,index)=>{
           return(
-            <Latest_movies_card onclick ={covers} title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.poster_path}`} key={index}/>
+            <Latest_movies_card onclick={(index)=>{
+              const singleMovie =[...data.results]
+              const single = singleMovie.slice(index)
+              setCover(data.results[index])
+              console.log(data.results[index]);
+              
+              
+              
+            }} title={movieCard.original_title } photo={`https://image.tmdb.org/t/p/w500/${movieCard.poster_path}`} key={index}/>
           )
           
             
