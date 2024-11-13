@@ -21,7 +21,7 @@ function Latest_movies() {
           throw new Error('Network response was not ok');
         }
         const result = await response.json();
-        setData(result);
+        setData(result.results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -37,20 +37,20 @@ function Latest_movies() {
     // Conditional rendering based on the state
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
-    console.log(data.results);
+    // console.log(data);
     
 
   return (
     <div className='p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
 
       
-        {data.results.map((movieCard,index)=>{
+        {data.map((movieCard,index)=>{
           return(
-            <Latest_movies_card onclick={(index)=>{
-              const singleMovie =[...data.results]
-              const single = singleMovie.slice(index)
-              setCover(data.results[index])
-              console.log(data.results[index]);
+            <Latest_movies_card onclick={()=>{
+              // console.log(data[index]);
+             const singleMovie = data[index]
+              setCover(singleMovie)
+              console.log(cover_image);
               
               
               
